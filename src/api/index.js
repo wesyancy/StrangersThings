@@ -134,6 +134,23 @@ export const updatePost = async ({token, title, description, price, location, wi
   }
 }
 
+export const deletePost = async (token, _id)=> {
+  try {
+    const response = await fetch(`${baseURL}/posts/${[_id]}`, {
+      method: "DELETE",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+    })
+    
+    const result = await response.json();
+    console.log ('success')
+    return result;  
+  } catch(ex) {
+    console.log('error deleting post')
+  }
+}
 
 export const createMessage = async ({postID, token, message}) => {
   try {
@@ -147,6 +164,7 @@ export const createMessage = async ({postID, token, message}) => {
       message
      })
     })
+    
   } catch(ex) {
     console.log('error creating message')
   }

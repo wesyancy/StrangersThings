@@ -23,6 +23,7 @@ const App = () => {
   const [posts, setPosts] = useState([]);
   const [token, setToken] = useState('');
   const [user, setUser] = useState({});
+  const [isLoggedIn, setIsLoggedIn] = useState(null)
   
   const navigate = useNavigate();
   
@@ -54,7 +55,7 @@ const App = () => {
       console.log(results.error.message);
     }
   }
-  
+
   useEffect(() => {
     fetchPosts();
   }, [token])
@@ -69,17 +70,18 @@ const App = () => {
       <Routes>
         <Route 
           path='/' 
-          element={<Home />} 
+          element={ <Home />} 
         />
         <Route 
           path='/posts' 
-          element={<Posts 
-            posts={posts} 
+          element={ <Posts 
+            posts={ posts }
+            token={ token } 
           />} 
         />
         <Route
           exact path='/posts/create-post'
-          element={<CreatePost 
+          element={ <CreatePost 
             token={ token } 
             fetchPosts={ fetchPosts } 
             navigate={ navigate }
@@ -87,29 +89,35 @@ const App = () => {
         />
         <Route
           exact path='/posts/edit-post/:postID'
-          element={<EditPost 
+          element={ <EditPost 
             posts={ posts }
             token={ token }
           />}
         />
         <Route
           path='/posts/:postID'
-          element={<SinglePostView 
+          element={ <SinglePostView 
             posts={ posts }
             token={ token }
+            user={ user }
+            navigate={ navigate }
+            isLoggedIn={ isLoggedIn }
           />}
         />
         <Route 
           path='/profile' 
-          element={<Profile 
-            user={ user }/>} 
+          element={ <Profile 
+            user={ user }
+            token={ token }
+            fetchPosts={ fetchPosts }
+            />} 
         />
         <Route 
           path='/register' 
-          element={<Register 
+          element={ <Register 
             setToken={ setToken } 
-            token={token} 
-            navigate={navigate} 
+            token={ token } 
+            navigate={ navigate } 
           />} 
         />
         <Route
@@ -117,6 +125,8 @@ const App = () => {
           element={ <Login 
             setToken={ setToken }
             navigate={ navigate }
+            isLoggedIn={ isLoggedIn }
+            setIsLoggedIn={ setIsLoggedIn }
           />}
         />
       </Routes>
@@ -131,14 +141,3 @@ root.render(
     <App />
   </BrowserRouter>
 );
-
-
-/*
-Login
-Registeration
-Posts
-Profile
-Navbar
-AddPost
-
-*/

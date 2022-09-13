@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { loginUser } from '../api';
 
-const Login = ({ setToken, navigate }) => {
+const Login = ({ setToken, navigate, isLoggedIn, setIsLoggedIn }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  
   
   const handleSubmit = async () => {
     const results = await loginUser(username, password);
@@ -11,6 +12,7 @@ const Login = ({ setToken, navigate }) => {
       setToken(results.data.token);
       window.localStorage.setItem('token', results.data.token);
       navigate('/profile');
+      setIsLoggedIn(username)
     } else {
       console.log(results.error.message)
     }

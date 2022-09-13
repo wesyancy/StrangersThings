@@ -50,7 +50,8 @@ const CreatePost = ({ token, fetchPosts, navigate }) => {
         type='text'
         placeholder='price'
         onChange={(ev) => setNewPrice(ev.target.value)}
-      /><p>Will Deliver?</p>
+      />
+      <p>Will Deliver?</p>
       <input 
         type='checkbox'
         checked={ogwillDeliver}

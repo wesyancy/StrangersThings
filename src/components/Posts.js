@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const Posts = ({ posts }) => {
+const Posts = ({ posts, token }) => {
 
   const [searchTerm, setSearchTerm] = useState('');
 
   function postMatches(post, text) {
-    const { title, description, price, location } = post
+  
+    if (!searchTerm.toLowerCase()) return true;
 
-    if (!searchTerm) return true;
-
-    return post.title.includes(text);
+    return (
+      post.title.toLowerCase().includes(text) ||
+      post.description.toLowerCase().includes(text) ||
+      post.price.toLowerCase().includes(text) ||
+      post.location.toLowerCase().includes(text)
+    )
   }
 
   const filteredPosts = posts.filter(post => postMatches(post, searchTerm));
@@ -41,22 +45,30 @@ const Posts = ({ posts }) => {
       <br></br>
       <br></br>
 
-      <button>
-        <Link to='/posts/create-post'>Add a Post</Link>
-      </button>
+      {
+        token ? 
+        (
+          <button>
+            <Link to='/posts/create-post'>Add a Post</Link>
+          </button>
+        ) : (
+          <h3>Login to post an item</h3>
+        )
+      }
 
       <br></br>
       <br></br>
 
       {
         postsToDisplay.map((post) => {
-          const { description, location, price, title, _id, isAuthor } = post;
+          const { description, location, price, title, _id, isAuthor, willDeliver } = post;
           return (
             <div key={_id}>
               <h3>{title}</h3>
               <p>Description: {description}</p>
               <p>Price: {price}</p>
               <p>Location: {location}</p>
+              <p>Will Deliver: {willDeliver ? 'Yes': 'No'}</p>
               {
                 isAuthor ? (
                   <>

@@ -10,7 +10,8 @@ const Navbar = ({ logout, token }) => {
         
         
         {
-          token ? (
+          token ? 
+          (
             <>
             <Link to='/profile'>Profile</Link>
             <Link to='/' onClick={ () => logout() }>Logout</Link>
