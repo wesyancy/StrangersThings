@@ -45,13 +45,14 @@ const Posts = ({ posts, token }) => {
       <br></br>
       <br></br>
 
-      {
-        token ? 
+      { token ? 
         (
           <button>
             <Link to='/posts/create-post'>Add a Post</Link>
           </button>
-        ) : (
+        ) 
+        : 
+        (
           <h3>Login to post an item</h3>
         )
       }

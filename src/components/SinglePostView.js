@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { createMessage } from '../api';
 
-const SendMessage = ({ postID, token, isLoggedIn }) => {
+const SendMessage = ({ postID, token }) => {
   const [message, setMessage] = useState({ content: '' });
-  
+
   const navigate = useNavigate();
   // we need 3 things to make this request
   // Post-id, token, message object containing the content of the message
@@ -19,29 +19,29 @@ const SendMessage = ({ postID, token, isLoggedIn }) => {
       ev.preventDefault();
       addMessage();
     }}>
-      {
-        (isLoggedIn === isLoggedIn) ?
-          (<div>
-            <input
-              type='text'
-              placeholder='Enter Message'
-              onChange={(ev) => setMessage({ content: ev.target.value })}
-            />
-            <button type='submit'>Send Message</button></div>)
-          : null
-      }
+
+
+      <div>
+        <input
+          type='text'
+          placeholder='Enter Message'
+          onChange={(ev) => setMessage({ content: ev.target.value })}
+        />
+        <button type='submit'>Send Message</button>
+      </div>
+
     </form>
   )
 }
 
-const SinglePostView = ({ posts, token }) => {
+const SinglePostView = ({ posts, token, user }) => {
   const [activateMessage, setActivateMessage] = useState(false);
 
   const { postID } = useParams();
 
   const [currentPost] = posts.filter(post => post._id === postID);
 
-  const { title, description, location, price, willDeliver } = currentPost;
+  const { title, description, location, price, willDeliver, isAuthor } = currentPost;
 
   return (
     <div>
@@ -53,11 +53,13 @@ const SinglePostView = ({ posts, token }) => {
         <p>Will Deliver: {willDeliver}</p>
       </div>
       {
-        token ?
+        token && !isAuthor ?
           (
             <button onClick={() => setActivateMessage(!activateMessage)}>Message this user</button>
-          ) : (
-            <h3>Log in to message user</h3>
+          ) 
+          : 
+          (
+            null
           )
       }
 
