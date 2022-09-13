@@ -8,11 +8,11 @@ const Profile = ({ user, token, _id }) => {
   const userID = user._id;
 
   useEffect(() => {
-    console.log('refresh');
+    // console.log('refresh');
     
   }, [user, deletePost])
 
-  console.log(user)
+  // console.log(user)
 
   return (
     <div>
@@ -42,7 +42,6 @@ const Profile = ({ user, token, _id }) => {
                   <button><Link to={`/posts/edit-post/${_id}`}>Edit</Link></button>
                   <button onClick={() => {
                     deletePost(token, post._id)
-                    console.log('hello')
                   }}>Delete this post?</button>
                 </div>
 
