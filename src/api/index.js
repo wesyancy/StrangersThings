@@ -100,7 +100,6 @@ export const createPost = async (token, {title, description, price, location, wi
     })
     
     const result = await response.json();
-    // console.log(result)
     return result;
   } catch(ex) {
     console.log('error creating a new post')
@@ -145,7 +144,6 @@ export const deletePost = async (token, _id)=> {
     })
     
     const result = await response.json();
-    // console.log ('success')
     return result;  
   } catch(ex) {
     console.log('error deleting post')
@@ -154,7 +152,7 @@ export const deletePost = async (token, _id)=> {
 
 export const createMessage = async ({postID, token, message}) => {
   try {
-    const respons = await fetch(`${baseURL}/posts/${postID}/messages`, {
+    const response = await fetch(`${baseURL}/posts/${postID}/messages`, {
      method: 'POST',
      headers: {
       'Content-Type': 'application/json',

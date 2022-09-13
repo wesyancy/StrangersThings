@@ -34,7 +34,8 @@ const SendMessage = ({ postID, token }) => {
   )
 }
 
-const SinglePostView = ({ posts, token, user }) => {
+const SinglePostView = ({ posts, token }) => {
+
   const [activateMessage, setActivateMessage] = useState(false);
 
   const { postID } = useParams();
@@ -52,17 +53,15 @@ const SinglePostView = ({ posts, token, user }) => {
         <p>Location: {location}</p>
         <p>Will Deliver: {willDeliver}</p>
       </div>
-      {
-        token && !isAuthor ?
-          (
-            <button onClick={() => setActivateMessage(!activateMessage)}>Message this user</button>
-          ) 
-          : 
-          (
-            null
-          )
+      {token && !isAuthor ?
+        (
+          <button onClick={() => setActivateMessage(!activateMessage)}>Message this user</button>
+        )
+        :
+        (
+          null
+        )
       }
-
       {
         activateMessage && <SendMessage postID={postID} token={token} />
       }

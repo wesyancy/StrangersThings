@@ -4,11 +4,8 @@ import { updatePost } from '../api';
 
 const EditPost = ({ posts, token }) => {
   const { postID } = useParams();
-  
   const [currentPost] = posts.filter(post => post._id === postID);
-  
   const {title, description, location, price, willDeliver} = currentPost;
-  
   const [newTitle, setNewTitle] = useState(title);
   const [newDescription, setNewDesc] = useState(description);
   const [newLocation, setNewLocation] = useState(location);
