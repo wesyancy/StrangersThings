@@ -6,14 +6,15 @@ const Posts = ({ posts, token }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   function postMatches(post, text) {
+
+    const { title , description , price } = post
   
-    if (!searchTerm.toLowerCase()) return true;
+    if (!searchTerm) return true;
 
     return (
       post.title.toLowerCase().includes(text) ||
       post.description.toLowerCase().includes(text) ||
-      post.price.toLowerCase().includes(text) ||
-      post.location.toLowerCase().includes(text)
+      post.price.toLowerCase().includes(text)
     )
   }
 
@@ -21,7 +22,7 @@ const Posts = ({ posts, token }) => {
   const postsToDisplay = searchTerm.length ? filteredPosts : posts;
 
   useEffect(() => {
-    // force repaint
+    
   }, [searchTerm])
 
   useEffect(() => {
@@ -32,24 +33,20 @@ const Posts = ({ posts, token }) => {
 
 
     <div id='outer div element'>
-
-      <br></br>
-      <br></br>
-
+      
       <input
+        id='searchBar'
         type='text'
         placeholder='search'
         onChange={(ev) => setSearchTerm(ev.target.value)}
       />
 
       <br></br>
-      <br></br>
 
       { token ? 
         (
-          <button>
-            <Link to='/posts/create-post'>Add a Post</Link>
-          </button>
+            <Link to='/posts/create-post'><button id='postItemButton'>Post an Item</button></Link>
+          
         ) 
         : 
         (
@@ -57,14 +54,11 @@ const Posts = ({ posts, token }) => {
         )
       }
 
-      <br></br>
-      <br></br>
-
       {
         postsToDisplay.map((post) => {
           const { description, location, price, title, _id, isAuthor, willDeliver } = post;
           return (
-            <div key={_id}>
+            <div id='notecard' key={_id}>
               <h3>{title}</h3>
               <p>Description: {description}</p>
               <p>Price: {price}</p>
@@ -73,11 +67,11 @@ const Posts = ({ posts, token }) => {
               {
                 isAuthor ? (
                   <>
-                    <button><Link to={`/posts/${_id}`}>View</Link></button>
-                    <button><Link to={`/posts/edit-post/${_id}`}>Edit</Link></button>
+                    <Link to={`/posts/${_id}`}><button>View</button></Link>
+                    
                   </>
                 ) : (
-                  <button><Link to={`/posts/${_id}`}>View</Link></button>
+                  <Link to={`/posts/${_id}`}><button>View</button></Link>
                 )
               }
             </div>

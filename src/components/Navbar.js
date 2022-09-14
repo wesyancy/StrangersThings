@@ -5,21 +5,21 @@ const Navbar = ({ logout, token }) => {
   return (
     <header>
       <nav>
-        <Link to='/'>Home</Link>
-        <Link to='/posts'>Posts</Link>
+        <Link to='/'><button id='navbar'>Home</button></Link>
+        <Link to='/posts'><button id='navbar'>Posts</button></Link>
         
         
         {
           token ? 
           (
             <>
-            <Link to='/profile'>Profile</Link>
-            <Link to='/' onClick={ () => logout() }>Logout</Link>
+            <Link to='/profile'><button id='navbar'>Profile</button></Link>
+            <Link to='/' onClick={ () => logout() }><button id='navbar'>Logout</button></Link>
             </>
           ) : (
             <>
-              <Link to='/register'>Register</Link>
-              <Link to='/login'>Login</Link>
+              <Link to='/register'><button id='navbar'>Register</button></Link>
+              <Link to='/login'><button id='navbar'>Login</button></Link>
             </>
           )
         }

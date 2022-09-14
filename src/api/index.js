@@ -32,6 +32,7 @@ export const registerUser = async (username, password) => {
     })
     const result = await response.json();
     return result;
+
   } catch(error) {
     console.log('error registering user')
   }
@@ -53,7 +54,6 @@ export const loginUser = async (username, password) => {
     })
     
     const result = await response.json();
-    
     return result;
     
   } catch(ex) {
@@ -101,6 +101,7 @@ export const createPost = async (token, {title, description, price, location, wi
     
     const result = await response.json();
     return result;
+
   } catch(ex) {
     console.log('error creating a new post')
   }
@@ -127,7 +128,8 @@ export const updatePost = async ({token, title, description, price, location, wi
     })
     
     const result = await response.json();
-    return result;  
+    return result;
+
   } catch(ex) {
     console.log('error updating post')
   }
@@ -144,7 +146,8 @@ export const deletePost = async (token, _id)=> {
     })
     
     const result = await response.json();
-    return result;  
+    return result;
+      
   } catch(ex) {
     console.log('error deleting post')
   }
@@ -162,6 +165,9 @@ export const createMessage = async ({postID, token, message}) => {
       message
      })
     })
+
+    const result = await response.json();
+    return result;
     
   } catch(ex) {
     console.log('error creating message')

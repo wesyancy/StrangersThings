@@ -24,11 +24,13 @@ const Login = ({ setToken, navigate, setIsLoggedIn }) => {
       handleSubmit();
     }}>
       <input 
+        id='createTitle'
         type='text'
         placeholder='Enter Username'
         onChange={(event) => setUsername(event.target.value)}
       />
       <input 
+        id='createTitle'
         type='password'
         placeholder='Enter Password'
         onChange={(event) => setPassword(event.target.value)}

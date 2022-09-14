@@ -24,30 +24,30 @@ const App = () => {
   const [token, setToken] = useState('');
   const [user, setUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(null)
-  
+
   const navigate = useNavigate();
-  
+
   function logout() {
     window.localStorage.removeItem('token');
     setToken('');
     setUser({});
   }
-  
+
   async function fetchPosts() {
     const results = await getPosts(token)
     setPosts(results.data.posts);
   }
-  
+
   async function getMe() {
     const storedToken = window.localStorage.getItem('token');
-    
+
     if (!token) {
       if (storedToken) {
         setToken(storedToken);
       }
       return;
     }
-    
+
     const results = await getUserDetails(token)
     if (results.success) {
       setUser(results.data);
@@ -59,74 +59,80 @@ const App = () => {
   useEffect(() => {
     fetchPosts();
   }, [token])
-  
+
   useEffect(() => {
     getMe();
   }, [token])
-  
+
   return (
-    <div>
-      <Navbar logout={ logout } token={ token }/>
-      <Routes>
-        <Route 
-          path='/' 
-          element={ <Home />} 
+    <div id="navbar">
+      <Navbar logout={logout} token={token} />
+      <Routes >
+        <Route
+          path='/'
+          element={<Home
+            token={token} />}
         />
-        <Route 
-          path='/posts' 
-          element={ <Posts 
-            posts={ posts }
-            token={ token } 
-          />} 
+        <Route
+          path='/posts'
+          element={<Posts
+            posts={posts}
+            token={token}
+          />}
         />
         <Route
           exact path='/posts/create-post'
-          element={ <CreatePost 
-            token={ token } 
-            fetchPosts={ fetchPosts } 
-            navigate={ navigate }
-          /> }
+          element={<CreatePost
+            token={token}
+            fetchPosts={fetchPosts}
+            navigate={navigate}
+            user={user}
+            setUser={setUser}
+          />}
         />
         <Route
           exact path='/posts/edit-post/:postID'
-          element={ <EditPost 
-            posts={ posts }
-            token={ token }
+          element={<EditPost
+            posts={posts}
+            token={token}
           />}
         />
         <Route
           path='/posts/:postID'
-          element={ <SinglePostView 
-            posts={ posts }
-            token={ token }
-            user={ user }
-            navigate={ navigate }
-            isLoggedIn={ isLoggedIn }
+          element={<SinglePostView
+            posts={posts}
+            token={token}
+            user={user}
+            navigate={navigate}
+            setUser={setUser}
+            getMe={getMe}
+            isLoggedIn={isLoggedIn}
           />}
         />
-        <Route 
-          path='/profile' 
-          element={ <Profile 
-            user={ user }
-            token={ token }
-            fetchPosts={ fetchPosts }
-            />} 
+        <Route
+          path='/profile'
+          element={<Profile
+            getMe={getMe}
+            user={user}
+            token={token}
+            fetchPosts={fetchPosts}
+          />}
         />
-        <Route 
-          path='/register' 
-          element={ <Register 
-            setToken={ setToken } 
-            token={ token } 
-            navigate={ navigate } 
-          />} 
+        <Route
+          path='/register'
+          element={<Register
+            setToken={setToken}
+            token={token}
+            navigate={navigate}
+          />}
         />
         <Route
           path='/login'
-          element={ <Login 
-            setToken={ setToken }
-            navigate={ navigate }
-            isLoggedIn={ isLoggedIn }
-            setIsLoggedIn={ setIsLoggedIn }
+          element={<Login
+            setToken={setToken}
+            navigate={navigate}
+            isLoggedIn={isLoggedIn}
+            setIsLoggedIn={setIsLoggedIn}
           />}
         />
       </Routes>

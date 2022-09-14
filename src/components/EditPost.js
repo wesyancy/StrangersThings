@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { updatePost } from '../api';
 
 const EditPost = ({ posts, token }) => {
@@ -11,6 +11,7 @@ const EditPost = ({ posts, token }) => {
   const [newLocation, setNewLocation] = useState(location);
   const [newPrice, setNewPrice] = useState(price);
   const [newWillDeliver, setNewWillDeliver] = useState(willDeliver);
+  const navigate = useNavigate();
   
   async function editPost() {
     const updatedPost = {
@@ -33,31 +34,38 @@ const EditPost = ({ posts, token }) => {
       
     }}>
       <input 
+        id='createTitle'
         type='text'
         placeholder={title}
         onChange={(ev) => setNewTitle(ev.target.value)}
       />
       <input 
+        id='createDescription'
         type='text'
         placeholder={description}
         onChange={(ev) => setNewDesc(ev.target.value)}
       />
       <input 
+        id='createLocation'
         type='text'
         placeholder={location}
         onChange={(ev) => setNewLocation(ev.target.value)}
       />
       <input 
+        id='createPrice'
         type='text'
         placeholder={price}
         onChange={(ev) => setNewPrice(ev.target.value)}
       />
       <input 
+        id='createWD'
         type='checkbox'
         checked={newWillDeliver}
         onChange={(ev) => setNewWillDeliver(ev.target.checked)}
       />
-      <button type='submit'>Edit Post</button>
+      <br></br>
+      <button type='submit'>Confirm Edit Post</button>
+      <button onClick={() => navigate(`/profile`)}>Go to Profile</button>
     </form>
   )
 }

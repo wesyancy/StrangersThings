@@ -1,0 +1,110 @@
+* {
+    background-color: darkslategrey;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-align: center;
+    font-style: none;
+    text-decoration: none;
+    color: tomato;
+}
+
+#navbar {
+    padding: 2rem;
+    margin: 1rem;
+}
+
+#notecard > * {
+    background-color: lightgrey;
+    text-align: left;
+    /* border: 10px solid black; */
+}
+
+#notecard {
+    background-color: lightgrey;
+    border: 5px solid black;
+    padding: 2%;
+    margin: 5%;
+}
+
+button {
+    font-size: large;
+    font-style: none;
+    padding: 1rem;
+    background-color: lightblue;
+}
+
+#createTitle {
+    padding: 1rem;
+    background-color: white;
+    color: black;
+}
+#createDescription {
+    padding: 1rem;
+    background-color: white;
+    color: black;
+}
+#createLocation {
+    padding: 1rem;
+    background-color: white;
+    color: black;
+}
+#createPrice {
+    padding: 1rem;
+    background-color: white;
+    color: black;
+}
+
+#delete {
+    font-size: large;
+    font-style: none;
+    padding: 1rem;
+    background-color: lightblue;
+}
+
+#homeButts {
+    padding: 5rem;
+    margin: 1rem;
+}
+
+#messageTB {
+    padding: 2rem;
+    margin: 2rem;
+    background-color: white;
+    color: black;
+    font-size: x-large;
+}
+
+#searchBar {
+    padding-right: 2rem;
+    padding-left: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    width: 45%;
+    margin-top: 2rem;
+    font-size: x-large;
+    background-color: slategray;
+}
+
+#postItemButton {
+    padding: 5%;
+    margin-top: 5%;
+    border: 5px solid gray;
+}
+
+#postItemButton > * {
+    margin: 1rem;
+    font-size: x-large;
+    background-color: lightblue;
+}
+
+#message > * {
+    border: 1px black;
+    text-align: left;
+}
+
+h3 {
+    color: brown;
+}
+
+p {
+    color: darkolivegreen;
+}

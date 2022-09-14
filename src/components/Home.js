@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Home = () => {
+const Home = ({ token }) => {
   return (
     <div>
       <h1>Welcome to Stranger's Things!</h1>
+      <Link to='/posts'><button id='homeButts'>Posts</button></Link>
+      { token ? <Link to='/profile'><button id='homeButts'>Profile</button></Link> : null}
     </div>
   )
 }

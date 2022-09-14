@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { createPost } from '../api';
+import { createPost, getUserDetails } from '../api';
+// import { getMe } from '../index'
 
-const CreatePost = ({ token, fetchPosts, navigate }) => {
+const CreatePost = ({ token, fetchPosts, navigate, setUser }) => {
   
   const [ogTitle, setNewTitle] = useState('');
   const [ogDescription, setNewDesc] = useState('');
@@ -18,41 +19,65 @@ const CreatePost = ({ token, fetchPosts, navigate }) => {
       willDeliver: ogwillDeliver
     }
 
-    
+    async function getMe() {
+      const storedToken = window.localStorage.getItem('token');
+  
+      if (!token) {
+        if (storedToken) {
+          setToken(storedToken);
+        }
+        return;
+      }
+  
+      const results = await getUserDetails(token)
+      if (results.success) {
+        setUser(results.data);
+      } else {
+        console.log(results.error.message);
+      }
+    }
     
     await createPost(token, newPost)
     await fetchPosts();
-    navigate(`/posts`)
+    await getMe();
+    navigate(`/profile`)
   }
   
   return (
-    <form onSubmit={ (ev) => {
+    <form 
+      id='notecard'
+      onSubmit={ (ev) => {
       ev.preventDefault();
       addPost();
       
     }}>
       <input 
+        id='createTitle'
         type='text'
         placeholder='title'
         onChange={(ev) => setNewTitle(ev.target.value)}
       />
       <input 
+        id='createDescription'
         type='text'
         placeholder='description'
         onChange={(ev) => setNewDesc(ev.target.value)}
       />
       <input 
+        id='createLocation'
         type='text'
         placeholder='location'
         onChange={(ev) => setNewLocation(ev.target.value)}
       />
       <input 
-        type='text'
+        id='createPrice'
+        type='number'
         placeholder='price'
         onChange={(ev) => setNewPrice(ev.target.value)}
       />
       <p>Will Deliver?</p>
       <input 
+        id='createWD'
         type='checkbox'
         checked={ogwillDeliver}
         onChange={(ev) => setNewWillDeliver(ev.target.checked)}
