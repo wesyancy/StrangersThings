@@ -64,7 +64,7 @@ const EditPost = ({ posts, token }) => {
         onChange={(ev) => setNewWillDeliver(ev.target.checked)}
       />
       <br></br>
-      <button type='submit'>Confirm Edit Post</button>
+      <button type='submit' onClick={() => navigate(`/profile`)}>Confirm Edit</button>
       <button onClick={() => navigate(`/profile`)}>Go to Profile</button>
     </form>
   )

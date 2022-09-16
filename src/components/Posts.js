@@ -50,7 +50,7 @@ const Posts = ({ posts, token }) => {
         ) 
         : 
         (
-          <h3>Login to post an item</h3>
+          <h3 id='loginToPost'>Login to post an item</h3>
         )
       }
 

@@ -66,6 +66,7 @@ const App = () => {
 
   return (
     <div id="navbar">
+      <h1>Stranger's Things</h1>
       <Navbar logout={logout} token={token} />
       <Routes >
         <Route
@@ -113,7 +114,9 @@ const App = () => {
           path='/profile'
           element={<Profile
             getMe={getMe}
+            setUser={setUser}
             user={user}
+            setToken={setToken}
             token={token}
             fetchPosts={fetchPosts}
           />}

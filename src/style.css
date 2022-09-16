@@ -25,11 +25,19 @@
     margin: 5%;
 }
 
+input {
+    margin: .5rem;
+}
+
 button {
     font-size: large;
     font-style: none;
     padding: 1rem;
     background-color: lightblue;
+}
+
+#loginToPost {
+    color: yellow;
 }
 
 #createTitle {
@@ -38,7 +46,7 @@ button {
     color: black;
 }
 #createDescription {
-    padding: 1rem;
+    padding: 10rem;
     background-color: white;
     color: black;
 }
@@ -51,6 +59,10 @@ button {
     padding: 1rem;
     background-color: white;
     color: black;
+}
+
+#createWD {
+    text-align: left;
 }
 
 #delete {

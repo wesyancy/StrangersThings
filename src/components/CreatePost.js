@@ -54,35 +54,38 @@ const CreatePost = ({ token, fetchPosts, navigate, setUser }) => {
       <input 
         id='createTitle'
         type='text'
-        placeholder='title'
+        placeholder='Title'
         onChange={(ev) => setNewTitle(ev.target.value)}
       />
+      <br></br>
       <input 
         id='createDescription'
         type='text'
-        placeholder='description'
+        placeholder='Description'
         onChange={(ev) => setNewDesc(ev.target.value)}
       />
+      <br></br>
       <input 
         id='createLocation'
         type='text'
-        placeholder='location'
+        placeholder='Location'
         onChange={(ev) => setNewLocation(ev.target.value)}
       />
       <input 
         id='createPrice'
         type='number'
-        placeholder='price'
+        placeholder='Price'
         onChange={(ev) => setNewPrice(ev.target.value)}
       />
-      <p>Will Deliver?</p>
+      <p>Check the box if you offer delivery</p>
       <input 
         id='createWD'
         type='checkbox'
         checked={ogwillDeliver}
         onChange={(ev) => setNewWillDeliver(ev.target.checked)}
       />
-      <button type='submit'>Post</button>
+      <br></br>
+      <button type='submit'>Create Post</button>
     </form>
   )
 }

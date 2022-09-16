@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { deletePost } from '../api';
+import { deletePost, getUserDetails } from '../api';
 // import { getMe } from '../index'
 
-const Profile = ({ user, token, _id }) => {
+const Profile = ({ user, token, _id, getMe }) => {
   const messages = user.messages;
   const posts = user.posts;
   const userID = user._id;
+
+  getMe();
 
   const profunction = (token, _id ) => {
     return (
@@ -89,8 +91,6 @@ const Profile = ({ user, token, _id }) => {
   
               if (userID === fromUserID) {
   
-                // console.log (messages)
-  
                 return (
   
                   <div 
@@ -112,10 +112,9 @@ const Profile = ({ user, token, _id }) => {
 
   useEffect(() => {
     profunction(token, _id)
-    console.log('refreshed')
   }, [user])
 
-  return profunction(token, _id) // console.log(user)
+  return profunction(token, _id) 
 
   
 }
