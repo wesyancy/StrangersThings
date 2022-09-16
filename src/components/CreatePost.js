@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { createPost, getUserDetails } from '../api';
-// import { getMe } from '../index'
 
-const CreatePost = ({ token, fetchPosts, navigate, setUser }) => {
+const CreatePost = ({ token, navigate, setUser }) => {
   
   const [ogTitle, setNewTitle] = useState('');
   const [ogDescription, setNewDesc] = useState('');
@@ -38,8 +37,7 @@ const CreatePost = ({ token, fetchPosts, navigate, setUser }) => {
     }
     
     await createPost(token, newPost)
-    await fetchPosts();
-    await getMe();
+
     navigate(`/profile`)
   }
   

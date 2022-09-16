@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { deletePost, getUserDetails } from '../api';
+import { deletePost } from '../api';
 // import { getMe } from '../index'
 
 const Profile = ({ user, token, _id, getMe }) => {
@@ -11,7 +11,9 @@ const Profile = ({ user, token, _id, getMe }) => {
   getMe();
 
   const profunction = (token, _id ) => {
+    
     return (
+      
       <div>
   
         <div>
@@ -111,12 +113,11 @@ const Profile = ({ user, token, _id, getMe }) => {
   }
 
   useEffect(() => {
-    profunction(token, _id)
+  
   }, [user])
 
   return profunction(token, _id) 
 
-  
 }
 
 export default Profile;

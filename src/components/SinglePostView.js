@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { createMessage, getUserDetails, deletePost } from '../api';
+import { createMessage, deletePost } from '../api';
 
 const SendMessage = ({ postID, token }) => {
   const [message, setMessage] = useState({ content: '' });
 
   const navigate = useNavigate();
-  // we need 3 things to make this request
-  // Post-id, token, message object containing the content of the message
 
   async function addMessage() {
     await createMessage({ postID, message, token }); 
@@ -70,9 +68,10 @@ const SinglePostView = ({ posts, token, getMe }) => {
               id='delete'
               onClick={() => {
                 deletePost(token, postID);
-                getMe();
                 navigate(`/profile`);
-              }}>Delete Post</button>
+              }}>Delete Post
+            </button>
+
           </> : null
         )
       }
