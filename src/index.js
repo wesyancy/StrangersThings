@@ -67,7 +67,7 @@ const App = () => {
   return (
     <div id="navbar">
       <h1>Stranger's Things</h1>
-      <Navbar logout={logout} token={token} />
+      <Navbar logout={logout} token={token} user={user} />
       <Routes >
         <Route
           path='/'

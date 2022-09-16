@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import { Link } from 'react-router-dom';
 
-const Navbar = ({ logout, token }) => {
+const Navbar = ({ logout, token, user }) => {
   return (
     <header>
       <nav>
@@ -13,8 +13,10 @@ const Navbar = ({ logout, token }) => {
           token ? 
           (
             <>
+            
             <Link to='/profile'><button id='navbar'>Profile</button></Link>
             <Link to='/' onClick={ () => logout() }><button id='navbar'>Logout</button></Link>
+            <h2 id='userName'>Hello, {user.username}!</h2>
             </>
           ) : (
             <>

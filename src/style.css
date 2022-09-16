@@ -36,6 +36,10 @@ button {
     background-color: lightblue;
 }
 
+#userName {
+    color: gold;
+}
+
 #loginToPost {
     color: yellow;
 }
