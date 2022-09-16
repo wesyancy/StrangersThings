@@ -13,7 +13,7 @@ const Profile = ({ user, token, _id, getMe }) => {
   const profunction = (token, _id ) => {
     
     return (
-      
+       
       <div>
   
         <div>
