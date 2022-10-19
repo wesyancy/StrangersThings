@@ -15,7 +15,6 @@ export const getPosts = async(token) => {
   }
 }
 
-
 export const registerUser = async (username, password) => {
   try {
     const response = await fetch(`${baseURL}/users/register`, {
@@ -61,7 +60,6 @@ export const loginUser = async (username, password) => {
   }
 }
 
-
 export const getUserDetails = async (token) => {
   try {
     const response = await fetch(`${baseURL}/users/me`, {
@@ -78,7 +76,6 @@ export const getUserDetails = async (token) => {
     console.log('error getting users details')
   }
 }
-
 
 export const createPost = async (token, {title, description, price, location, willDeliver})=> {
   try {
@@ -106,7 +103,6 @@ export const createPost = async (token, {title, description, price, location, wi
     console.log('error creating a new post')
   }
 }
-
 
 export const updatePost = async ({token, title, description, price, location, willDeliver, _id})=> {
   try {
